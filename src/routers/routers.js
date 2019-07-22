@@ -1,6 +1,8 @@
 const Router = require('koa-router');
 const User = require('./../models/user')
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
 let router = new Router();
 
 router.post('/getUserList', async (ctx, next) => {
@@ -9,6 +11,7 @@ router.post('/getUserList', async (ctx, next) => {
   const list = await User.find();
   const response = {}
   response.data = list;
+  await delay(2000);
   ctx.body = response;
 });
 
