@@ -5,6 +5,11 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 let router = new Router();
 
+router.get('/test', async (ctx, next) => {
+  const list = await User.find();
+  ctx.body = list;
+});
+
 router.post('/getUserList', async (ctx, next) => {
   var pageNum = ctx.request.body.pageNum;
   var pageSize = ctx.request.body.pageSize;
